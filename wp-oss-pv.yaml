@@ -12,7 +12,7 @@ spec:
   flexVolume:
     driver: alicloud/oss
     options:
-      akId: LTAIIW3fz4Y8InDp
-      akSecret: 3Ch3Ik8HMiiypIoR9RHOCWmGNuBHfF
+      akId: [key]
+      akSecret: [secret]
   persistentVolumeReclaimPolicy: Retain
   storageClassName: oss
