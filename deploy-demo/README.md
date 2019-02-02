@@ -1,4 +1,4 @@
-# alibaba-cloud-k8s-demo
+# How to make deployments with k8s in alibaba cloud
 
 ## Set up k8s dashboard
 By default, Alibaba Cloud container service will not install dashboard for you.
