@@ -1,9 +1,11 @@
 # alibaba-cloud-k8s-demo
 
+## Set up k8s dashboard
 By default, Alibaba Cloud container service will not install dashboard for you.
 Refer to the K8s dashboard [installation page](https://github.com/kubernetes/dashboard/wiki/Installation) either configure SSH certificate and use
 
 ```bash
+# to be honest, I never tried this one as I anyway do not plan to expose dashboard publicly.
 kubectl create secret generic kubernetes-dashboard-certs --from-file=$HOME/certs -n kube-system
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
@@ -37,13 +39,21 @@ subjects:
   namespace: kube-system
 ```
 
+Access the dashboard by using the Link below via proxy
+
+```bash
+kubectl proxy
+```
+
+http://localhost:8001/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+
 ## Below is the example how to setup MySQL with WordPress
 Original Code can be found in [google demo](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples).
 
 ### Prepare Disk
 
 ```bash
-kubectl apply -f ./alibaba-cloud-k8s-demo/mysql-pvc.yaml
+kubectl apply -f ./alibaba-cloud-k8s-demo/deploy-demo/mysql-pvc.yaml
 #check if available by using:
 kubectl describe pvc
 # in case you do not know which storage class to use:
@@ -53,9 +63,9 @@ kubectl get storageclass
 Deploy MySQL with service
 ```bash
 # deploy app
-kubectl apply -f ./alibaba-cloud-k8s-demo/mysql.yaml
+kubectl apply -f ./alibaba-cloud-k8s-demo/deploy-demo/mysql.yaml
 # deploy service
-kubectl apply -f ./alibaba-cloud-k8s-demo/mysql-service.yaml
+kubectl apply -f ./alibaba-cloud-k8s-demo/deploy-demo/mysql-service.yaml
 
 ```
 
@@ -63,11 +73,11 @@ Deploy WordPress with servcie
 
 ```bash
 # deploy pvc
-kubectl apply -f ./alibaba-cloud-k8s-demo/wp-pvc.yaml
+kubectl apply -f ./alibaba-cloud-k8s-demo/deploy-demo/wp-pvc.yaml
 # deploy app
-kubectl apply -f ./alibaba-cloud-k8s-demo/wp.yaml
+kubectl apply -f ./alibaba-cloud-k8s-demo/deploy-demo/wp.yaml
 # deploy service
-kubectl apply -f ./alibaba-cloud-k8s-demo/wp-service.yaml
+kubectl apply -f ./alibaba-cloud-k8s-demo/deploy-demo/wp-service.yaml
 
 ```
 
@@ -92,7 +102,7 @@ Use OSS as storage
 
 ```bash
 # create PV from OSS
-kubectl apply -f ./alibaba-cloud-k8s-demo/wp-oss-pv.yaml
+kubectl apply -f ./alibaba-cloud-k8s-demo/deploy-demo/wp-oss-pv.yaml
 
 # create PVC from PV
 

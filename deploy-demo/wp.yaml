@@ -37,4 +37,4 @@ spec:
             claimName: wordpress-volumeclaim
         - name: wordpress-oss-storage
           persistentVolumeClaim:
-            claimName: pgp-container
+            claimName: pgp-demo-oss

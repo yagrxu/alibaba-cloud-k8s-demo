@@ -2,17 +2,20 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   labels:
-    alicloud-pvname: pgp-container
-  name: pgp-container
+    alicloud-pvname: pgp-demo-oss
+  name: pgp-demo-oss
 spec:
   accessModes:
     - ReadWriteMany
   capacity:
-    storage: 10Gi
+    storage: 2Gi
   flexVolume:
     driver: alicloud/oss
     options:
+      bucket: "pgp-demo-oss"
       akId: [key]
+      url: oss-eu-central-1-internal.aliyuncs.com
       akSecret: [secret]
+      otherOpts: "-o max_stat_cache_size=0 -o allow_other"
   persistentVolumeReclaimPolicy: Retain
   storageClassName: oss
