@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: hello-world
-    image: registry-intl-vpc.eu-central-1.aliyuncs.com/test-hao/test:latest
+    image: registry-intl.eu-central-1.aliyuncs.com/[namespace]/[repo]:[tag]
   imagePullSecrets:
   - name: regcred

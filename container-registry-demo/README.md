@@ -34,8 +34,15 @@ metadata:
 spec:
   containers:
   - name: hello-world
-    image: test:v1
+    image: registry-intl.eu-central-1.aliyuncs.com/[namespace]/[repo]:[tag]
   imagePullSecrets:
   - name: regcred
 
 ```
+
+**If you encounter issue that pulling image not authorized within k8s cluster, try to reset your user password in Alibaba Cloud web console.**
+
+
+I have tested this one, not yet with vpc access. Let me know if you find something not working with vpc.
+
+The example will complain some env of mysql not found, find a proper foundation image yourself.
